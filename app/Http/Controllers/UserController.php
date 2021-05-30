@@ -12,16 +12,16 @@ class UserController extends Controller
 {
     public function index()
     {
-        $data = [
-            'name' => 'Elon', 
-            'email' => 'joeriz2@mailinator.com',
-            'password' => 'password',
-        ];
+        // $data = [
+        //     'name' => 'Elon', 
+        //     'email' => 'joeriz3@mailinator.com',
+        //     'password' => 'password',
+        // ];
 
-        User::create($data);
+        // User::create($data);
 
-        $user = User::all();
-        return $user;
+        // $user = User::all();
+        // return $user;
 
         return view('welcome');
 
