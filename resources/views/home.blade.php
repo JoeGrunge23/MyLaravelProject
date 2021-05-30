@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+
+<!--  you can check it in resources/views/layouts/-->
+>>>>>>> 5c3b9836238cc2eb4550c93aa5e8a85fabb2f0a6
 @extends('layouts.app')
 
 @section('content')
@@ -16,6 +21,20 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+<<<<<<< HEAD
+=======
+
+
+                <div class="card-body">
+                    <form action="/upload" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="image"/>
+                        <input type="submit" value="Upload"/>
+                    </form>
+                </div>
+
+            
+>>>>>>> 5c3b9836238cc2eb4550c93aa5e8a85fabb2f0a6
             </div>
         </div>
     </div>
