@@ -29,13 +29,22 @@ Route::get('/', function () {
 Route::get('/user', 'UserController@index'); 
 
 
-Route::post('/upload', function (Request $request) {
-    // $request->image->store('images'); <-- this will redirect to storage/app/images
-    // This will store teh 
-    $request->image->store('images','public');
+
+Route::post('/upload', [UserController::class, 'uploadAvatar']); 
+
+
+// Route::post('/upload', function (Request $request) {
+//     // $request->image->store('images'); <-- this will redirect to storage/app/images
+//     // This will store teh 
+//     $request->image->store('images','public');
     
-    return 'uploaded';
-});
+//     return 'uploaded';
+// });
+
+
+
+
+
 
 Auth::routes();
 

@@ -2,13 +2,6 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
-use Illuminate\Http\Request;
-
-class UserController extends Controller
-{
-    //
-=======
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -17,6 +10,22 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+
+    public function uploadAvatar(Request $request)
+    {
+        // $request->image->store('images', 'public');
+        if ($request->hasFile('image')) {
+            // This is from vendor\laravel\framework\src\Illuminate\Http\UploadedFile.php  search for getClientOriginalName 
+            $filename = $request->image->getClientOriginalName();
+            $request->image->storeAs('images', $filename, 'public');
+            // User::find(1)->update(['avatar' => $filename]);
+            auth()->user()->update(['avatar' => $filename]);
+
+        }
+        return redirect()->back();
+    }
+
+
     public function index()
     {
         // $data = [
@@ -33,5 +42,4 @@ class UserController extends Controller
         return view('welcome');
 
     }
->>>>>>> 5c3b9836238cc2eb4550c93aa5e8a85fabb2f0a6
 }
