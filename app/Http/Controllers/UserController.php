@@ -15,21 +15,11 @@ class UserController extends Controller
     {
         // $request->image->store('images', 'public');
         if ($request->hasFile('image')) {
-            // This is from vendor\laravel\framework\src\Illuminate\Http\UploadedFile.php  search for getClientOriginalName 
-            $filename = $request->image->getClientOriginalName();
-            if (auth()->user()->avatar)
-            {
-                // This will delete the image in 
-                Storage::delete('/public/images/' . auth()->user()->avatar);
-            }
-            $request->image->storeAs('images', $filename, 'public');
-            auth()->user()->update(['avatar'=> $filename]);
-            // User::find(1)->update(['avatar' => $filename]);
+            User::uploadAvatar($request->image);
 
         }
         return redirect()->back();
     }
-
 
     public function index()
     {
