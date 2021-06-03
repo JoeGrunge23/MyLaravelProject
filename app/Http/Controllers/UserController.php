@@ -16,9 +16,12 @@ class UserController extends Controller
         // $request->image->store('images', 'public');
         if ($request->hasFile('image')) {
             User::uploadAvatar($request->image);
-
+            // this will show session error
+            return redirect()->back()->with('message', 'Image Uploaded');
         }
-        return redirect()->back();
+
+
+        return redirect()->back()->with('error', 'Image  not Uploaded');
     }
 
     public function index()
