@@ -48,7 +48,7 @@ class User extends Authenticatable
     {
         // This is from vendor\laravel\framework\src\Illuminate\Http\UploadedFile.php  search for getClientOriginalName 
         $filename = $image->getClientOriginalName();
-        (new self())->deleteOldImage();
+        auth()->user()->deleteOldImage();
         $image->storeAs('images', $filename, 'public');
         auth()->user()->update(['avatar'=> $filename]);
         
