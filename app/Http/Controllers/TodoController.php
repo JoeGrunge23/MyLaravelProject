@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Todo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TodoController extends Controller
 {
@@ -26,7 +28,29 @@ class TodoController extends Controller
 
     public function Store(Request $request)
     {
-        dd($
+        
+        $rules = [
+            'title' => 'required|max:255',
+        ];
+        
+
+        $messages = [
+            'title.max' => 'Todo title should not be greater than 255 chars',
+        ];
+        
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        // Store the blog post...
+
+        Todo::create($request->all());
+        return redirect()->back()->with('message', 'To do created successfully');
+
     }
     
 }
