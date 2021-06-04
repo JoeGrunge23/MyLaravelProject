@@ -1,12 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
-
-use Illuminate\Support\Facades\View;
+use App\Http\Controllers\TodoController;
 
 /*
+
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -17,34 +15,37 @@ use Illuminate\Support\Facades\View;
 |
 */
 
+
+Route::get('/todos', [TodoController::class, 'index']);
+Route::get('/todos/create', [TodoController::class, 'create']);
+Route::post('/todos/create', [TodoController::class, 'store']);
+
+Route::get('/todos/edit', [TodoController::class, 'edit']);
+ 
+
 Route::get('/', function () {
     return view('welcome');
-    // This will return the key ses key  in config/services.php  
-    // return config('services.ses.key'); 
-    // return View::make('welcome');
+ 
 });
 
-// Route::get('/user', [UserController::class, 'index']); 
-
-Route::get('/user', 'UserController@index'); 
 
 
+Route::get('/user', [UserController::class, 'index']); 
 
-Route::post('/upload', [UserController::class, 'uploadAvatar']); 
+Route::get('/upload', [UserController::class, 'uploadAvatar']); 
+
+
+
+// Route::get('/user', 'UserController@index'); 
 
 
 // Route::post('/upload', function (Request $request) {
 //     // $request->image->store('images'); <-- this will redirect to storage/app/images
-//     // This will store teh 
+//     // This will store teh  in storage/app/public/images
 //     $request->image->store('images','public');
     
 //     return 'uploaded';
 // });
-
-
-
-
-
 
 Auth::routes();
 
