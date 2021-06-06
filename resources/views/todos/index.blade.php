@@ -6,6 +6,7 @@
         <a href="/todos/create" class="mx-5 py-2 px-1 bg-blue-300 cursor-pointer rounded text-white">Create New</a>
     </div>
         <ul clas="my-5">
+            <x-alert />
             @foreach($todos as $todo)
                 <li class="flex justify-center py-2">
                     <p>{{$todo->title}}</p>
@@ -14,4 +15,4 @@
             @endforeach
         </ul>
 
- @endsection    
+ @endsection

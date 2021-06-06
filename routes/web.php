@@ -16,34 +16,34 @@ use App\Http\Controllers\TodoController;
 */
 
 
-Route::get('/todos', [TodoController::class, 'index']);
+Route::get('/todos', [TodoController::class, 'index'])->name('todo.index');
 Route::get('/todos/create', [TodoController::class, 'create']);
 Route::post('/todos/create', [TodoController::class, 'store']);
-
 Route::get('/todos/{todo}/edit', [TodoController::class, 'edit']);
- 
+Route::patch('/todos/{todo}/update', [TodoController::class, 'update'])->name('todo.update');;
+
 
 Route::get('/', function () {
     return view('welcome');
- 
+
 });
 
 
 
-Route::get('/user', [UserController::class, 'index']); 
+Route::get('/user', [UserController::class, 'index']);
 
-Route::get('/upload', [UserController::class, 'uploadAvatar']); 
+Route::get('/upload', [UserController::class, 'uploadAvatar']);
 
 
 
-// Route::get('/user', 'UserController@index'); 
+// Route::get('/user', 'UserController@index');
 
 
 // Route::post('/upload', function (Request $request) {
 //     // $request->image->store('images'); <-- this will redirect to storage/app/images
 //     // This will store teh  in storage/app/public/images
 //     $request->image->store('images','public');
-    
+
 //     return 'uploaded';
 // });
 
