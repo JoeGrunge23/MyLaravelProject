@@ -10,4 +10,11 @@ class Todo extends Model
     // use HasFactory;
 
     protected $fillable = ['title'];
+    
+
+    // public function getRouteKeyName()
+    // {
+    //     return 'title';
+    // }
+ 
 }

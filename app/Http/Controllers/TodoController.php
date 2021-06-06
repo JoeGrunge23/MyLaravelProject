@@ -22,9 +22,10 @@ class TodoController extends Controller
 
     }
 
-    public function edit($id)
+    public function edit(Todo $todo)
     {
-        $todo = Todo::find($id);
+        // $todo = Todo::find($id);
+        // dd($todo->title);
         return view('todos.edit',compact('todo'));
 
     }
