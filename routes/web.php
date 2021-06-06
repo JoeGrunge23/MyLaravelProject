@@ -21,6 +21,7 @@ Route::get('/todos/create', [TodoController::class, 'create']);
 Route::post('/todos/create', [TodoController::class, 'store']);
 Route::get('/todos/{todo}/edit', [TodoController::class, 'edit']);
 Route::patch('/todos/{todo}/update', [TodoController::class, 'update'])->name('todo.update');;
+Route::put('/todos/{todo}/complete', [TodoController::class, 'complete'])->name('todo.complete');;
 
 
 Route::get('/', function () {
