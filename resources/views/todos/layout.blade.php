@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="text-center pt-10">
-        @yield('content');
+        @yield('content')
     </div>
 </body>
 </html>
