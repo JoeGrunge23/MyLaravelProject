@@ -1,16 +1,31 @@
 @extends('todos.layout')
 
 @section('content')
-    <div class="flex justify-center">
+    <div class="flex justify-center border-b pb-4">
         <h1 class="text-2x1">All Your Todos</h1>
-        <a href="/todos/create" class="mx-5 py-2 px-1 bg-blue-300 cursor-pointer rounded text-white">Create New</a>
+        <a href="/todos/create" class="mx-5 py-1 px-1 bg-blue-400 cursor-pointer rounded text-white">Create New</a>
     </div>
         <ul clas="my-5">
             <x-alert />
             @foreach($todos as $todo)
-                <li class="flex justify-center py-2">
+                <li class="flex justify-between p-3">
+
+                    @if($todo->completed)
+                    <p class="line-through">{{$todo->title}}</p>
+                    @else
                     <p>{{$todo->title}}</p>
-                    <a href="{{'/todos/'.$todo->id.'/edit'}}" class="mx-10 py-2 px-1 bg-purple-400 cursor-pointer rounded text-white">Edit</a>
+                    @endif
+
+                    <div>
+                        <a href="{{'/todos/'.$todo->id.'/edit'}}" class="mx-2 py-2 px-2 text-red-400 cursor-pointer rounded text-white">
+                            <span class="fas fa-edit px-1"/>
+                        </a>
+                        @if ($todo->completed)
+                        <span class="fas fa-check text-green-500 px-2"/>
+                        @else
+                        <span class="fas fa-check text-gray-300 cursor-pointer px-2"/>
+                        @endif
+                    </div>
                 </li>
             @endforeach
         </ul>
