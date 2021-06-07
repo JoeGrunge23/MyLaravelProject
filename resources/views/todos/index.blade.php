@@ -9,7 +9,7 @@
     </div>
         <ul clas="my-5">
             <x-alert />
-            @foreach($todos as $todo)
+            @forelse($todos as $todo)
                 <li class="flex justify-between p-3">
                     <div>
                         @include('todos.completeButton')
@@ -41,7 +41,10 @@
                             @method('delete')
                     </div>
                 </li>
-            @endforeach
+
+                @empty
+                    <p>No task available</p>
+            @endforelse
         </ul>
 
  @endsection
