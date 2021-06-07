@@ -3,6 +3,8 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\TodoResourceController;
+use App\Http\Middleware\EnsureTokenIsValid;
+
 
 // use App\Http\Controllers\PhotoController;
 
@@ -18,7 +20,6 @@ use App\Http\Controllers\TodoResourceController;
 |
 */
 
-Route::resource('/todo', TodoController::class);
 
 
 // Route::get('/todos', [TodoController::class, 'index'])->name('todo.index');
@@ -28,8 +29,13 @@ Route::resource('/todo', TodoController::class);
 // Route::patch('/todos/{todo}/update', [TodoController::class, 'update'])->name('todo.update');
 // Route::delete('/todos/{todo}/delete', [TodoController::class, 'delete'])->name('todo.delete');
 
-Route::put('/todos/{todo}/complete', [TodoController::class, 'complete'])->name('todo.complete');
-Route::delete('/todos/{todo}/incomplete', [TodoController::class, 'incomplete'])->name('todo.incomplete');
+// Route::middleware(['auth'])->group(function () {
+// Route::resource('/todo', TodoController::class)->middleware('auth');
+
+    Route::resource('/todo', TodoController::class);
+    Route::put('/todos/{todo}/complete', [TodoController::class, 'complete'])->name('todo.complete');
+    Route::delete('/todos/{todo}/incomplete', [TodoController::class, 'incomplete'])->name('todo.incomplete');
+// });
 
 
 
