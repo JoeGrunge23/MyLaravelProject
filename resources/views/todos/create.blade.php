@@ -4,11 +4,11 @@
 
  <h1 class="text-2x1">What next you need To-DO</h1>
     <x-alert />
-    <form action="/todos/create" method="post" class="py-5">
-        @csrf 
+    <form action="{{route('todo.store')}}" method="post" class="py-5">
+        @csrf
         <input type="text" name="title" class="py-2 px-2 border rounded"/>
         <input type="submit" value="Create" class="p-2 border rounded">
     </form>
-    <a href="/todos/" class="m5 py-2 px-1 bg-white-400 cursor-pointer rounded">Back </a>
+    <a href="{{route('todo.index')}}" class="m5 py-2 px-1 bg-white-400 cursor-pointer rounded">Back </a>
 
-@endsection    
+@endsection

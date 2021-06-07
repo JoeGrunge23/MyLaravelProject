@@ -3,7 +3,7 @@
 @section('content')
     <div class="flex justify-between border-b pb-4 px-3">
         <h1 class="text-2x1">All Your Todos</h1>
-        <a href="/todos/create" class="mx-5 py-2 text-blue-400 cursor-pointer  text-white">
+        <a href="{{route('todo.create')}}" class="mx-5 py-2 text-blue-400 cursor-pointer  text-white">
             <span class="fas fa-plus-circle"></span>
         </a>
     </div>
@@ -21,27 +21,24 @@
                     @endif
 
                     <div>
-                        <a href="{{'/todos/'.$todo->id.'/edit'}}" class="mx-2 py-2 px-2 text-red-400 cursor-pointer rounded text-white">
+                        <a href="{{route('todo.edit', $todo->id)}}" class="mx-2 py-2 px-2 text-red-400 cursor-pointer rounded text-white">
                             <span class="fas fa-edit px-1"/>
                         </a>
 
                         {{-- <a href="{{'/todos/'.$todo->id.'/edit'}}"
                             class="mx-2 py-2 px-2 text-red-500 cursor-pointer rounded text-white"
                             > --}}
-                            <span class="fas fa-trash px-2  text-red-500 cursor-pointer"
-                            onclick="
-                            if(confirm('Do you really want to delete?')){
-                                event.preventDefault();
+                            <span class="fas fa-trash  cursor-pointer text-red-500 px-2"
+                            onclick="event.preventDefault(); if(confirm('Do you wish to delete?')){
                                 document.getElementById('form-delete-{{$todo->id}}')
                                 .submit()
                             }"/>
                         {{-- </a> --}}
 
                         <form style="display:none" id="{{'form-delete-'.$todo->id}}" method="post"
-                            action="{{route('todo.delete', $todo->id)}}">
+                            action="{{route('todo.destroy', $todo->id)}}">
                             @csrf
                             @method('delete')
-                        </form>
                     </div>
                 </li>
             @endforeach
