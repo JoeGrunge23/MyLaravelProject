@@ -7,6 +7,7 @@
             <span class="fas fa-plus-circle"></span>
         </a>
     </div>
+
         <ul clas="my-5">
             <x-alert />
             @forelse($todos as $todo)
@@ -17,7 +18,9 @@
                     @if($todo->completed)
                     <p class="line-through">{{$todo->title}}</p>
                     @else
-                    <p>{{$todo->title}}</p>
+                    <a class="cursor-pointer" href="{{route('todo.show', $todo->id)}}}">
+                        {{$todo->title}}
+                    </a>
                     @endif
 
                     <div>
