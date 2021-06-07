@@ -11,7 +11,9 @@
             <x-alert />
             @foreach($todos as $todo)
                 <li class="flex justify-between p-3">
-
+                    <div>
+                        @include('todos.completeButton')
+                    </div>
                     @if($todo->completed)
                     <p class="line-through">{{$todo->title}}</p>
                     @else
@@ -22,30 +24,24 @@
                         <a href="{{'/todos/'.$todo->id.'/edit'}}" class="mx-2 py-2 px-2 text-red-400 cursor-pointer rounded text-white">
                             <span class="fas fa-edit px-1"/>
                         </a>
-                        @if ($todo->completed)
-                        <span class="fas fa-check text-green-500 cursor-pointer px-2" onclick="event.preventDefault();
-                        document.getElementById('form-incomplete-{{$todo->id}}')
-                        .submit()"/>
 
-                    <form style="display:none" id="{{'form-incomplete-'.$todo->id}}" method="post"
-                        action="{{route('todo.incomplete', $todo->id)}}">
-                        @csrf
-                        @method('delete')
-                    </form>
+                        {{-- <a href="{{'/todos/'.$todo->id.'/edit'}}"
+                            class="mx-2 py-2 px-2 text-red-500 cursor-pointer rounded text-white"
+                            > --}}
+                            <span class="fas fa-trash px-2  text-red-500 cursor-pointer"
+                            onclick="
+                            if(confirm('Do you really want to delete?')){
+                                event.preventDefault();
+                                document.getElementById('form-delete-{{$todo->id}}')
+                                .submit()
+                            }"/>
+                        {{-- </a> --}}
 
-                    @else
-                    <span onclick="event.preventDefault();
-                        document.getElementById('form-complete-{{$todo->id}}')
-                        .submit()" class="fas fa-check text-gray-300 cursor-pointer px-2"/>
-
-                    <form style="display:none" id="{{'form-complete-'.$todo->id}}" method="post"
-                        action="{{route('todo.complete', $todo->id)}}">
-                    @csrf
-                    @method('put')
-                    </form>
-
-                    @endif
-
+                        <form style="display:none" id="{{'form-delete-'.$todo->id}}" method="post"
+                            action="{{route('todo.delete', $todo->id)}}">
+                            @csrf
+                            @method('delete')
+                        </form>
                     </div>
                 </li>
             @endforeach
