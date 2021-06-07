@@ -46,25 +46,30 @@ class User extends Authenticatable
 
     public static function uploadAvatar($image)
     {
-        // This is from vendor\laravel\framework\src\Illuminate\Http\UploadedFile.php  search for getClientOriginalName 
+        // This is from vendor\laravel\framework\src\Illuminate\Http\UploadedFile.php  search for getClientOriginalName
         $filename = $image->getClientOriginalName();
         auth()->user()->deleteOldImage();
         $image->storeAs('images', $filename, 'public');
         auth()->user()->update(['avatar'=> $filename]);
-        
+
     }
 
 
-    
+
     protected function deleteOldImage()
     {
         if ($this->avatar)
         {
-            // This will delete the image in 
+            // This will delete the image in
             Storage::delete('/public/images/' . $this->avatar);
         }
     }
 
+
+    public function todos()
+    {
+        return $this->hasMany(Todo::class);
+    }
 
 
     // public function setPasswordAttribute($password)
